@@ -48,6 +48,11 @@ button:hover{
     color:#999;
 }
 
+button:hover{
+    background-color: #666;
+    color:#999;
+}
+
 textarea {
   resize: none;
 }
