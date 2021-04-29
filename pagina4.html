@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pagina4.css">
+    <title>Pesquisa</title>
+</head>
+<body>
+    <div class="conteiner">
+        <h1>Suas Respostas:</h1>
+        <h2>Nome:</h2>
+        <span id="pag1_nome"></span>
+        <h2>Fale um pouco sobre sua experiência com jogos eletrônicos(Pc, Console, etc):</h2>
+        <span id="pag1_text"></span>
+
+        <h2>Você conhece o gênero JRPG (Japonese Role-Playing Game)?</h2>
+        <span id="pag2_check"></span>
+        <h2 id="pag2_pergunta"></h2>
+        <span id="pag2_text"></span>
+
+        <h2>Escolha o nome que parece mais interessante para você:</h2>
+        <span id="pag3_text"></span>
+        <br>
+        <a href="index.html"><button id="botao">Nova pesquisa</button></a>
+
+    </div>
+
+    <script>
+
+        const pag1_nome= document.getElementById("pag1_nome");
+        const pag1_text= document.getElementById("pag1_text");
+
+        const pag2_check= document.getElementById("pag2_check");
+        const pag2_pergunta= document.getElementById("pag2_pergunta");
+        const pag2_text= document.getElementById("pag2_text");
+
+        const pag3_text= document.getElementById("pag3_text");
+        const botao= document.getElementById("botao");
+
+
+        pag1_nome.innerText= localStorage.getItem("pag1_nome");
+        pag1_text.innerText= localStorage.getItem("pag1_area");
+
+
+
+        if(localStorage.getItem("pag2_sim") == "true"){
+            pag2_check.innerText= "Sim";
+            pag2_pergunta.innerText= "Diga suas experiência com JRPG:";
+        }
+        else if(localStorage.getItem("pag2_nao") == "true"){
+            pag2_check.innerText= "Não";
+            pag2_pergunta.innerText= "Diga o que você imagina que seja um JRPG:";
+            
+        }
+        pag2_text.innerText= localStorage.getItem("pag2_area");
+
+        pag3_text.innerText= localStorage.getItem("pag3_check");
+
+        botao.addEventListener("click", () => {
+            localStorage.clear();
+        })
+
+    </script>
+
+
+
+</body>
+</html>

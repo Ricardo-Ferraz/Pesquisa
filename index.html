@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Pesquisa</title>
+</head>
+<body>
+    <h1>Pesquisa sobre JRPG</h1>
+    <form action="pagina2.html">
+        <h2 id="texto_nome">Nome:</h2>
+        <input type="text" placeholder="Name" id="nome">
+        <h2>Fale um pouco sobre sua experiência com jogos eletrônicos(Pc, Console, etc):</h2>
+        <textarea id="ex" cols="30" rows="10" placeholder="Insert"></textarea>
+        <br>
+        <button id="next">Próxima</button>
+    </form>
+
+    <script>
+
+        const botao = document.getElementById("next");
+
+        botao.addEventListener("click", () => {
+            const nome = document.getElementById("nome");
+            const textarea = document.getElementById("ex");
+            localStorage.setItem("pag1_nome", nome.value);
+            localStorage.setItem("pag1_area", textarea.value);
+        }); 
+
+        document.getElementById("nome").value = localStorage.getItem("pag1_nome");
+        document.getElementById("ex").value = localStorage.getItem("pag1_area");
+
+    </script>
+
+</body>
+</html>

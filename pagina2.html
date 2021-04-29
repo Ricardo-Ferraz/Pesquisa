@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pagina2.css">
+    <title>Pesquisa</title>
+</head>
+<body>
+
+    <form class="conteiner">
+        <h2>Você conhece o gênero JRPG (Japonese Role-Playing Game)?</h2>
+        <input id="sim" name="escolha" type="radio"><label for="sim">Sim</label>
+        <br>
+        <input id="nao" name="escolha"  type="radio"><label for="nao">Não</label>
+        <br>
+        <div id="caso_sim" style="display: none;">
+            <h2>Diga suas experiência com JRPG: </h2>
+            <textarea id="text" cols="30" rows="10"></textarea>
+        </div>
+
+        <div id="caso_nao" style="display: none;">
+            <h2>Diga o que você imagina que seja um JRPG: </h2>
+            <textarea id="text2" cols="30" rows="10"></textarea>
+        </div>
+        <div class="botoes">
+            <input type="button" onclick="window.location.href = 'index.html';" value="Anterior" id="anterior">
+            <input type="button" onclick="window.location.href = 'pagina3.html';" value="Próxima" id="proximo">
+       </div>
+    </form>
+
+
+    <script>
+        const sim = document.getElementById("sim");
+        if(localStorage.getItem("pag2_sim") == "true"){
+            sim.checked = true; 
+        }
+        else{
+            sim.checked= false;
+        }
+        const nao = document.getElementById("nao");
+        if(localStorage.getItem("pag2_nao") == "true"){
+            nao.checked = true;
+        }
+        else{
+            nao.checked= false;
+        }
+        const caso_sim= document.getElementById("caso_sim");
+        const caso_nao= document.getElementById("caso_nao");
+        const proximo= document.getElementById("proximo");
+        const anterior= document.getElementById("anterior");
+        const text= document.getElementById("text");
+        const text2= document.getElementById("text2");
+
+        sim.addEventListener("click", () => {
+            caso_sim.style.display= "block";
+            caso_nao.style.display= "none";
+        });
+
+        nao.addEventListener("click", () => {
+            caso_sim.style.display= "none";
+            caso_nao.style.display= "block";
+        });
+
+        proximo.addEventListener("click", () => {
+            if(sim.checked){
+                localStorage.setItem("pag2_sim", sim.checked);
+                localStorage.setItem("pag2_nao", nao.checked);
+                localStorage.setItem("pag2_area", text.value);
+            }
+            else{
+                localStorage.setItem("pag2_sim", sim.checked);
+                localStorage.setItem("pag2_nao", nao.checked);
+                localStorage.setItem("pag2_area", text2.value);
+            }
+        });
+
+        anterior.addEventListener("click", () => {
+            if(sim.checked){
+                localStorage.setItem("pag2_sim", sim.checked);
+                localStorage.setItem("pag2_nao", nao.checked);
+                localStorage.setItem("pag2_area", text.value);
+            }
+            else if(nao.checked){
+                localStorage.setItem("pag2_sim", sim.checked);
+                localStorage.setItem("pag2_nao", nao.checked);
+                localStorage.setItem("pag2_area", text2.value);
+            }
+        });
+
+        if(sim.checked){
+            caso_sim.style.display= "block";
+            caso_nao.style.display= "none";
+            text.value= localStorage.getItem("pag2_area");
+        }
+        else if(nao.checked){
+            caso_sim.style.display= "none";
+            caso_nao.style.display= "block";
+            text2.value= localStorage.getItem("pag2_area");
+        }
+
+        else{
+            caso_sim.style.display= "none";
+            caso_nao.style.display= "none";
+        }
+
+    </script>
+
+</body>
+</html>
